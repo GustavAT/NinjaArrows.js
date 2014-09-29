@@ -32,5 +32,15 @@ var customStyle = {
 var ninjaArrows = new NinjaArrows(map, markers, { style: customStyle );
 ```
 
+To add a new marker simply call addMarker():
+```javascript
+ninjaArrows.addMarker(marker);
+```
+
+The same applies to removing markers, just call removeMarker():
+```javascript
+ninjaArrows.removeMarker(marker);
+```
+
 **OpenLayers**
 OpenLayers version comming soon ;)
