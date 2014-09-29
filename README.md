@@ -55,7 +55,7 @@ ninjaArrows.clearMarkers();
 
 You can apply several options to the arrows: style, edgeOffset, borderOffset and jumpTo-Flag
 
-__Style__
+_Style_
 
 Use the setMap() method to show or hide the arrows.
 ```javascript
