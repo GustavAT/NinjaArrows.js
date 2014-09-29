@@ -6,7 +6,9 @@ A Google Maps/OpenLayers extension that shows small arrows at the map's egeds in
 Usage
 -----
 
-**Google Maps**
+###Google Maps
+**creating a new instance**
+
 To use NinjaArrows and its features simply create a new NinjaArrows instance by passing a valid map to the constructor.
 ```javascript
 var ninjaArrows = new NinjaArrows(map);
@@ -32,6 +34,8 @@ var customStyle = {
 var ninjaArrows = new NinjaArrows(map, markers, { style: customStyle } );
 ```
 
+**adding and removing markers**
+
 To add a new marker simply call addMarker():
 ```javascript
 ninjaArrows.addMarker(marker);
@@ -46,6 +50,7 @@ To clear all markers, call clearMarkers():
 ```javascript
 ninjaArrows.clearMarkers();
 ```
+
 
 Use the setMap() method to show or hide the arrows.
 ```javascript
