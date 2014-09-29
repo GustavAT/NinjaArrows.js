@@ -7,7 +7,7 @@ Usage
 -----
 
 ###Google Maps
-**creating a new instance**
+**Creating a new instance**
 
 To use NinjaArrows and its features simply create a new NinjaArrows instance by passing a valid map to the constructor.
 ```javascript
@@ -34,7 +34,7 @@ var customStyle = {
 var ninjaArrows = new NinjaArrows(map, markers, { style: customStyle } );
 ```
 
-**adding and removing markers**
+**Adding and removing markers**
 
 To add a new marker simply call addMarker():
 ```javascript
@@ -51,6 +51,11 @@ To clear all markers, call clearMarkers():
 ninjaArrows.clearMarkers();
 ```
 
+**Options**
+
+You can apply several options to the arrows: style, edgeOffset, borderOffset and jumpTo-Flag
+
+__Style__
 
 Use the setMap() method to show or hide the arrows.
 ```javascript
