@@ -3,7 +3,12 @@ NinjaArrows.js
 
 A Google Maps/OpenLayers extension that shows small arrows at the map's egeds indicating out of bounds markers. You can jump to these markers or extend your map's bounds by clicking on an arrow.
 
-**(!) Note**
+This project was created at [ilogs mobile software GmbH](http://ilogs.com)
+
+Also visit our Blog: [Ninja Dev Team](https://ninjadevs.wordpress.com/) ( Under construction ;) )
+
+
+**Note**
 
 ninjaarrows-gmaps-vXXX.js is using Google Maps JavaScript API v3
 
