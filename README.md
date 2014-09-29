@@ -1,7 +1,7 @@
 NinjaArrows.js
 ==============
 
-A Google Maps/OpenLayers extension that shows small arrows at the map's egeds indicating out of bounds markers.
+A Google Maps/OpenLayers extension that shows small arrows at the map's egeds indicating out of bounds markers. You can jump to these markers or extend your map's bounds by clicking on an arrow.
 
 Usage
 -----
@@ -29,7 +29,7 @@ var customStyle = {
   strokeWidth: 2,
   textColor: "black"
 };
-var ninjaArrows = new NinjaArrows(map, markers, { style: customStyle );
+var ninjaArrows = new NinjaArrows(map, markers, { style: customStyle } );
 ```
 
 To add a new marker simply call addMarker():
@@ -47,11 +47,13 @@ To clear all markers, call clearMarkers():
 ninjaArrows.clearMarkers();
 ```
 
-To show and hide the arrows call show()/hide():
+Use the setMap() method to show or hide the arrows.
 ```javascript
-ninjaArrows.show();
+// hide
+ninjaArrows.setMap(null);
 
-ninjaArrows.hide();
+// show
+ninjaArrows.setMap(map);
 ```
 
 
