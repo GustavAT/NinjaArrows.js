@@ -58,10 +58,14 @@ You can apply several options to the arrows: style, edgeOffset, borderOffset and
 _Style_
 
 Pass a style object to the NinjaArrows to apply a custom style. A style object can define this attributes:
-* fillColor
-* strokeColor
-* strokeWidth
-* textColor
+```javascript
+{
+  fillColor: string,
+  strokeColor: string,
+  strokeWidth: number,
+  textColor: string
+}
+```
 If an attribute is not specified in the style object, the default property is taken.
 
 Use the setMap() method to show or hide the arrows.
