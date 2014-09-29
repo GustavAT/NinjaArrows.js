@@ -37,10 +37,23 @@ To add a new marker simply call addMarker():
 ninjaArrows.addMarker(marker);
 ```
 
-The same applies to removing markers, just call removeMarker():
+The same applies to removing markers. Just call removeMarker() to remove the given marker from NinjaArrows. 
 ```javascript
 ninjaArrows.removeMarker(marker);
 ```
+
+To clear all markers, call clearMarkers():
+```javascript
+ninjaArrows.clearMarkers();
+```
+
+To show and hide the arrows call show()/hide():
+```javascript
+ninjaArrows.show();
+
+ninjaArrows.hide();
+```
+
 
 **OpenLayers**
 OpenLayers version comming soon ;)
