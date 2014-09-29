@@ -22,14 +22,4 @@ var ninjaArrows = new NinjaArrows(map, markers);
 ```
 
 **OpenLayers**
-```javascript
-
-```
-
-Test
------
-
-```javascript
-var i = 0;
-console.log('i: ' + i);
-```
+OpenLayers version comming soon ;)
