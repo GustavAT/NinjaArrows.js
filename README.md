@@ -21,5 +21,16 @@ var markers = [];
 var ninjaArrows = new NinjaArrows(map, markers);
 ```
 
+You can alos instantiate NinjaArrows with several options, i.e. style, offsets etc.
+```javascript
+var customStyle = {
+  fillColor: "yellow",
+  strokeColor: "orange",
+  strokeWidth: 2,
+  textColor: "black"
+};
+var ninjaArrows = new NinjaArrows(map, markers, { style: customStyle );
+```
+
 **OpenLayers**
 OpenLayers version comming soon ;)
