@@ -93,6 +93,8 @@ _jumpTo_
 
 This flag specifies whether the map's bounds should extend to contain out of bounds markers or jump to out of bounds markers. Use setJumpTo(flag)
 
+**Show/Hide**
+
 Use the setMap() method to show or hide the arrows.
 ```javascript
 // hide
@@ -103,5 +105,5 @@ ninjaArrows.setMap(map);
 ```
 
 
-**OpenLayers**
+###OpenLayers
 OpenLayers version comming soon ;)
