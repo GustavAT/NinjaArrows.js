@@ -6,6 +6,7 @@ A Google Maps/OpenLayers extension that shows small arrows at the map's egeds in
 **(!) Note**
 
 ninjaarrows-gmaps-vXXX.js is using Google Maps JavaScript API v3
+
 ninjaarrows-ol-vXXX.js is using OpenLayers 2
 
 Usage
