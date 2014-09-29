@@ -56,7 +56,8 @@ ninjaArrows.clearMarkers();
 You can apply several options to the arrows: style, edgeOffset, borderOffset and jumpTo-Flag
 
 _style_
-Pass a style object to the NinjaArrows constructor or use setStyle() to apply a custom style. A style object can define these attributes: (If an attribute is not specified in the style object, the default property is taken.)
+
+Pass a style object to the NinjaArrows constructor or use setStyle(style) to apply a custom style. A style object can define these attributes: (If an attribute is not specified in the style object, the default property is taken.)
 ```javascript
 {
   fillColor: string,
@@ -67,10 +68,12 @@ Pass a style object to the NinjaArrows constructor or use setStyle() to apply a 
 ```
 
 _edgeOffset_
-This is the minimum distance in pixel between arrow at top/bottom and left/right. (Arrows won't overlap in corners). Use setEdgeOffset() to change the offset. Default is 75px.
+
+This is the minimum distance in pixel between arrow at top/bottom and left/right. (Arrows won't overlap in corners). Use setEdgeOffset(offset) to change the offset. Default is 75px.
 
 _borderOffset_
-This is the offset from the map's border to the arrows. Offset is specified in Pixel, the default configuration looks like this:
+
+This is the offset from the map's border to the arrows. Use setBorderOffset(offset) to change the offset in pixel.
 ```javascript
 {
   top: 0,
@@ -79,6 +82,10 @@ This is the offset from the map's border to the arrows. Offset is specified in P
   left: 70
 };
 ```
+
+_jumpTo_
+
+This flag specifies whether the map's bounds should extend to contain out of bounds markers or jump to out of bounds markers. Use setJumpTo(flag)
 
 Use the setMap() method to show or hide the arrows.
 ```javascript
