@@ -1,1 +1,49 @@
- 
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>NinjaArrows Demo Example</title>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: Arial;
+            font-size: 16px;
+        }
+
+        #map {
+            height: 400px;
+            width: 600px;
+        }
+
+    </style>
+
+    <script src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
+    <script src="js/ninjaarrows-gmaps.js"></script>
+    <script type="text/javascript">
+        var ninjaArrows, markers = [], map;
+        function init() {
+            var center = new google.maps.LatLng(46.642138,14.289268);
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: center,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            for (var i = 0; i < 100; i++) {
+                markers.push(new google.maps.Marker({
+                    position: new google.maps.LatLng(42 + 10 * Math.random(), 10 + 10 * Math.random()),
+                    map: map,
+                    title: "Random Marker " + i
+                }));
+            }
+            ninjaArrows = new NinjaArrows(map, markers);
+            ninjaArrows.setBorderOffset({ top: 25, bottom: 10, right: 0, left: 70});
+        }
+    </script>
+    
+</head>
+<body onload="init()">
+        <div id="map"></div>
+</body>
+</html>
