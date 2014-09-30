@@ -151,10 +151,9 @@ NinjaArrow = (function () {
 
         // draw triangle and rotate according to the angle
         context.beginPath();
-        context.moveTo(12 * Math.cos(deg2rad(angle)), 12 * Math.sin(deg2rad(angle)));
-        context.lineTo(12 * Math.cos(deg2rad(270 + angle)), 12 * Math.sin(deg2rad(270 + angle)));
-        context.lineTo(12 * Math.cos(deg2rad(180 + angle)), 12 * Math.sin(deg2rad(180 + angle)));
-        //context.lineTo(12 * Math.cos(deg2rad(angle)), 12 * Math.sin(deg2rad(angle)));
+        context.moveTo(12 * Math.cos(NinjaArrows.deg2rad(angle)), 12 * Math.sin(NinjaArrows.deg2rad(angle)));
+        context.lineTo(12 * Math.cos(NinjaArrows.deg2rad(270 + angle)), 12 * Math.sin(NinjaArrows.deg2rad(270 + angle)));
+        context.lineTo(12 * Math.cos(NinjaArrows.deg2rad(180 + angle)), 12 * Math.sin(NinjaArrows.deg2rad(180 + angle)));
         //context.closePath();
 
         context.fillStyle = fillColor;
@@ -169,40 +168,40 @@ NinjaArrow = (function () {
 
     ninjaArrow.getAngleAndOffsetFromDirection = function (direction, fontSize, textWidth) {
         var angle = 0, x = 0, y = 0;
-        if (direction === 8) { // N ok
+        if (direction === NinjaArrows.N) { // N ok
             angle = 0;
             y += fontSize;
         }
-        else if (direction === 2) { // S ok
+        else if (direction === NinjaArrows.S) { // S ok
             angle = 180;
             y -= 2;
         }
-        else if (direction === 12) { // NE
+        else if (direction === NinjaArrows.NE) { // NE
             angle = 45;
             y += fontSize;
             x -= textWidth / 2;
         }
-        else if (direction === 4) { // E ok
+        else if (direction === NinjaArrows.E) { // E ok
             angle = 90;
             y += fontSize / 2 - 1;
             x -= textWidth / 2 + 3;
         }
-        else if (direction === 6) { // SE ok
+        else if (direction === NinjaArrows.SE) { // SE ok
             angle = 135;
             y -= 2;
             x -= textWidth / 2;
         }
-        else if (direction === 3) { // SW ok
+        else if (direction === NinjaArrows.SW) { // SW ok
             angle = -135;
             y -= 2;
             x += textWidth / 2;
         }
-        else if (direction === 1) { // W ok
+        else if (direction === NinjaArrows.W) { // W ok
             angle = -90;
             y += fontSize / 2 - 1;
             x += textWidth / 2 + 3;
         }
-        else if (direction === 9) { // NW
+        else if (direction === NinjaArrows.NW) { // NW
             angle = -45;
             y += fontSize;
             x += textWidth / 2;
@@ -215,14 +214,7 @@ NinjaArrow = (function () {
 
 NinjaArrows = (function () {
 
-    var ARROW_STYLE = {
-        fillColor: "rgb(153, 187, 232)",
-        strokeColor: "black",
-        strokeWidth: 2,
-        textColor: "black"
-    };
-
-    var eventTypes = ["arrows_created", "arrows_updated"];
+    var eventTypes = ["arrows_created", "update_finished"];
 
     var ninjaArrows = function (map, marker, options) {
         if (!map) return;
@@ -234,7 +226,7 @@ NinjaArrows = (function () {
         this.handlers = [];
 
         if (!options) options = {};
-        this.style = options.style || ARROW_STYLE;
+        this.style = options.style || NinjaArrows.DefaultStyle;
         this.edgeOffset = options.edgeOffset || 75;
         this.borderOffset = options.borderOffset || { top: 0, right: 0, bottom: 0, left: 70 };
         this.jumpTo = typeof options.jumpTo !== "boolean" ? true : options.jumpTo;
@@ -254,41 +246,54 @@ NinjaArrows = (function () {
         this.overlay.setMap(this.map);
     };
 
+    ninjaArrows.NW = 9;
+    ninjaArrows.N = 8;
+    ninjaArrows.NE = 12;
+    ninjaArrows.E = 4;
+    ninjaArrows.SE = 6;
+    ninjaArrows.S = 2;
+    ninjaArrows.SW = 3;
+    ninjaArrows.W = 1;
+
+    ninjaArrows.DefaultStyle = {
+        fillColor: "rgb(153, 187, 232)",
+        strokeColor: "black",
+        strokeWidth: 2,
+        textColor: "black"
+    };
+
     ninjaArrows.prototype.init = function () {
-        // NW N NE E SE S SW W [8,4,2,1] [N,E,S,W]
-        this.arrows.push(this.createNinjaArrow("1001"));
-        this.arrows.push(this.createNinjaArrow("1000"));
-        this.arrows.push(this.createNinjaArrow("1100"));
-        this.arrows.push(this.createNinjaArrow("0100"));
-        this.arrows.push(this.createNinjaArrow("0110"));
-        this.arrows.push(this.createNinjaArrow("0010"));
-        this.arrows.push(this.createNinjaArrow("0011"));
-        this.arrows.push(this.createNinjaArrow("0001"));
-        this.fire("ninja_created", null);
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.NW));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.N));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.NE));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.E));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.SE));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.S));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.SW));
+        this.arrows.push(this.createNinjaArrow(NinjaArrows.W));
+        this.fire("arrows_created", null);
     };
 
     ninjaArrows.prototype.createNinjaArrow = function (direction) {
         var arrow, x, y;
-        direction = parseInt(direction, 2);
-        if (direction & 8) { // North
+        if (direction & NinjaArrows.N) { // North
             y = 20 + this.borderOffset.top;
         }
-        else if (direction & 2) { // South
+        else if (direction & NinjaArrows.S) { // South
             y = -20 - this.borderOffset.bottom;
         }
         else {
             y = 0;
         }
-        if (direction & 1) { // West
+        if (direction & NinjaArrows.W) { // West
             x = 20 + this.borderOffset.left;
         }
-        else if (direction & 4) { // East
+        else if (direction & NinjaArrows.E) { // East
             x = -20;
         }
         else {
             x = 0 - this.borderOffset.right;
         }
-        //map, position, fillText, direction, offset, style
         arrow = new NinjaArrow(this.map, null, 0, direction, { x: -20 + x, y: -20 + y }, this.style, this.jumpTo);
         arrow.count = -1;
         arrow.marker = [];
@@ -304,7 +309,7 @@ NinjaArrows = (function () {
 
     ninjaArrows.prototype.setStyle = function (style) {
         var arrow;
-        if (!style) style = ARROW_STYLE;
+        if (!style) style = NinjaArrows.DefaultStyle;
         this.style = style;
         for (var i = 0; i < this.arrows.length; i++) {
             arrow = this.arrows[i];
@@ -326,19 +331,19 @@ NinjaArrows = (function () {
             var direction, i, x, y;
             for (i = 0; i < this.arrows.length; i++) {
                 direction = this.arrows[i].direction;
-                if (direction & 8) { // North
+                if (direction & NinjaArrows.N) { // North
                     y = 20 + this.borderOffset.top;
                 }
-                else if (direction & 2) { // South
+                else if (direction & NinjaArrows.S) { // South
                     y = -20 - this.borderOffset.bottom;
                 }
                 else {
                     y = 0;
                 }
-                if (direction & 1) { // West
+                if (direction & NinjaArrows.W) { // West
                     x = 20 + this.borderOffset.left;
                 }
-                else if (direction & 4) { // East
+                else if (direction & NinjaArrows.E) { // East
                     x = -20;
                 }
                 else {
@@ -390,42 +395,42 @@ NinjaArrows = (function () {
             direction = -1;
             if (y > top && x < left) {
                 cntNw += marker.count || 1;
-                direction = 9;
+                direction = NinjaArrows.NW;
             }
             else if (y > top && x > right) {
                 cntNe += marker.count || 1;
-                direction = 12;
+                direction = NinjaArrows.NE;
             }
             else if (y > top) {
                 cntN += marker.count || 1;
                 cntAvgN++;
-                direction = 8;
+                direction = NinjaArrows.N;
                 avgN += x;
             }
             else if (y < bottom && x < left) {
                 cntSw += marker.count || 1;
-                direction = 3;
+                direction = NinjaArrows.SW;
             }
             else if (y < bottom && x > right) {
                 cntSe += marker.count || 1;
-                direction = 6;
+                direction = NinjaArrows.SE;
             }
             else if (y < bottom) {
                 cntS += marker.count || 1;
                 cntAvgS++;
-                direction = 2;
+                direction = NinjaArrows.S;
                 avgS += x;
             }
             else if (x < left) {
                 cntW += marker.count || 1;
                 cntAvgW++;
-                direction = 1;
+                direction = NinjaArrows.W;
                 avgW += y;
             }
             else if (x > right) {
                 cntE += marker.count || 1;
                 cntAvgE++;
-                direction = 4;
+                direction = NinjaArrows.E;
                 avgE += y;
             }
             arrow = this.getNinjaArrowByDirection(direction);
@@ -436,49 +441,49 @@ NinjaArrows = (function () {
         avgN /= cntAvgN; avgE /= cntAvgE; avgS /= cntAvgS; avgW /= cntAvgW;
         
         if (cntN !== 0) { //N
-            arrow = this.getNinjaArrowByDirection(8);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.N);
             arrow.count = cntN;
             arrow.position = new google.maps.LatLng(top, this.calculateOffset(false, arrow, avgN));
             arrowsToShow.push(arrow);
         }
         if (cntNe !== 0) {  // NE
-            arrow = this.getNinjaArrowByDirection(12);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.NE);
             arrow.count = cntNe;
             arrow.position = new google.maps.LatLng(top, right);
             arrowsToShow.push(arrow);
         }
         if (cntNw !== 0) {  // NW
-            arrow = this.getNinjaArrowByDirection(9);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.W);
             arrow.count = cntNw;
             arrow.position = new google.maps.LatLng(top, left);
             arrowsToShow.push(arrow);
         }
         if (cntW !== 0) {   // W
-            arrow = this.getNinjaArrowByDirection(1);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.W);
             arrow.count = cntW;
             arrow.position = new google.maps.LatLng(this.calculateOffset(true, arrow, avgW), left);
             arrowsToShow.push(arrow);
         }
         if (cntE !== 0) {   // E
-            arrow = this.getNinjaArrowByDirection(4);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.E);
             arrow.count = cntE;
             arrow.position = new google.maps.LatLng(this.calculateOffset(true, arrow, avgE), right);
             arrowsToShow.push(arrow);
         }
         if (cntSw !== 0) {  // SW
-            arrow = this.getNinjaArrowByDirection(3);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.SW);
             arrow.count = cntSw;
             arrow.position = new google.maps.LatLng(bottom, left);
             arrowsToShow.push(arrow);
         }
         if (cntS !== 0) {   // S
-            arrow = this.getNinjaArrowByDirection(2);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.S);
             arrow.count = cntS;
             arrow.position = new google.maps.LatLng(bottom, this.calculateOffset(false, arrow, avgS));
             arrowsToShow.push(arrow);
         }
         if (cntSe !== 0) {  // SE
-            arrow = this.getNinjaArrowByDirection(6);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.SE);
             arrow.count = cntSe;
             arrow.position = new google.maps.LatLng(bottom, right);
             arrowsToShow.push(arrow);
@@ -489,7 +494,7 @@ NinjaArrows = (function () {
             arrowsToShow[i].show();
         }
 
-        this.fire("arrows_updated", { count: arrowsToShow.length });
+        this.fire("update_finished", { count: arrowsToShow.length });
     };
 
     ninjaArrows.prototype.getNinjaArrowByDirection = function (direction) {
@@ -569,23 +574,13 @@ NinjaArrows = (function () {
         }
     };
 
+    ninjaArrows.rad2deg = function(angle) {
+        return angle * (180 / Math.PI);
+    };
+
+    ninjaArrows.deg2rad = function(angle) {
+        return angle * (Math.PI / 180);
+    };
+
     return ninjaArrows;
 })();
-
-/**
-* Convert radians to degrees.
-* @param angle {number}
-* @returns {number}
-*/
-function rad2deg(angle) {
-    return angle * (180 / Math.PI);
-}
-
-/**
-* Convert degrees to radians
-* @param angle {number}
-* @returns {number}
-*/
-function deg2rad(angle) {
-    return angle * (Math.PI / 180);
-}
