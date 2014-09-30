@@ -111,10 +111,10 @@ ninjaArrows.setMap(map);
 
 **Events**
 
-NinjaArrows support two different events at the moment: arrows_created and arrows_updated.
+NinjaArrows support two different events at the moment: arrows_created and update_finished.
 
 * __arrows_created__ is fired when a new instance is created and the arrows are initialised.
-* __arrows_updated__ is fired when the arrow update has finished
+* __update_finished__ is fired when the arrow update has finished
 
 Use register(event, callback) to register for an event:
 
