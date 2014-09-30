@@ -111,7 +111,19 @@ ninjaArrows.setMap(map);
 
 **Events**
 
-NinjaArrows support two different events at the moment: arrows_created and arrows_updated
+NinjaArrows support two different events at the moment: arrows_created and arrows_updated.
+
+arrows_created is fired when a new instance is created and the arrows are initialised.
+
+arrows_updated is fired when the arrow update has finished
+
+Use register(event, callback) to register for an event:
+
+```javascript
+ninjaArrows.register("arrows_updated", function (event) {
+  // do something
+};
+```
 
 ###OpenLayers
 OpenLayers version comming soon ;)
