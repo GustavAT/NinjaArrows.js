@@ -119,7 +119,7 @@ NinjaArrows support two different events at the moment: arrows_created and updat
 Use register(event, callback) to register for an event:
 
 ```javascript
-ninjaArrows.register("arrows_updated", function (event) {
+ninjaArrows.register("update_finished", function (event) {
   // do something
 };
 ```
