@@ -109,6 +109,9 @@ ninjaArrows.setMap(null);
 ninjaArrows.setMap(map);
 ```
 
+**Events**
+
+NinjaArrows support two different events at the moment: arrows_created and arrows_updated
 
 ###OpenLayers
 OpenLayers version comming soon ;)
