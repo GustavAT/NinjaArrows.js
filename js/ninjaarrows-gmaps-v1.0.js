@@ -1,7 +1,7 @@
 /*
 ** The MIT License (MIT)
 **
-** Copyright (c) 2014 Andreas Tscheinig
+** Copyright (c) 2014 Andreas Tscheinig at ilogs mobile software GmbH
 **
 ** Permission is hereby granted, free of charge, to any person obtaining a copy
 ** of this software and associated documentation files (the "Software"), to deal
@@ -222,7 +222,7 @@ NinjaArrows = (function () {
         textColor: "black"
     };
 
-    var eventTypes = ["ninja_created", "ninja_calculated", "ninja_updated"];
+    var eventTypes = ["arrows_created", "arrows_updated"];
 
     var ninjaArrows = function (map, marker, options) {
         if (!map) return;
@@ -434,9 +434,7 @@ NinjaArrows = (function () {
             }
         }
         avgN /= cntAvgN; avgE /= cntAvgE; avgS /= cntAvgS; avgW /= cntAvgW;
-
-        this.fire("ninja_calculated", null);
-
+        
         if (cntN !== 0) { //N
             arrow = this.getNinjaArrowByDirection(8);
             arrow.count = cntN;
@@ -491,7 +489,7 @@ NinjaArrows = (function () {
             arrowsToShow[i].show();
         }
 
-        this.fire("ninja_updated", { count: arrowsToShow.length });
+        this.fire("arrows_updated", { count: arrowsToShow.length });
     };
 
     ninjaArrows.prototype.getNinjaArrowByDirection = function (direction) {
