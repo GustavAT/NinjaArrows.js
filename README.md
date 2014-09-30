@@ -1,3 +1,5 @@
+** This project is not completed yet! **
+
 NinjaArrows.js
 ==============
 
