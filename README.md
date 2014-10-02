@@ -1,5 +1,3 @@
-**OpenLayers version is not completed yet!**
-
 NinjaArrows.js
 ==============
 
