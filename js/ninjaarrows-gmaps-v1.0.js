@@ -453,7 +453,7 @@ NinjaArrows = (function () {
             arrowsToShow.push(arrow);
         }
         if (cntNw !== 0) {  // NW
-            arrow = this.getNinjaArrowByDirection(NinjaArrows.W);
+            arrow = this.getNinjaArrowByDirection(NinjaArrows.NW);
             arrow.count = cntNw;
             arrow.position = new google.maps.LatLng(top, left);
             arrowsToShow.push(arrow);
