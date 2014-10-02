@@ -16,7 +16,7 @@ Ninja Arrows Blog: [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) (
 
 ninjaarrows-gmaps-vXXX.js is using Google Maps JavaScript API v3
 
-ninjaarrows-ol-vXXX.js is using OpenLayers 2
+ninjaarrows-openlayers-vXXX.js is using OpenLayers 2
 
 Usage
 -----
