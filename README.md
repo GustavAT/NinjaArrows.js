@@ -9,9 +9,9 @@ NinjaArrows is a Google Maps/OpenLayers extension that shows small arrows at the
 
 **Please also visit**
 
-This project was created at [ilogs mobile software GmbH](http://ilogs.com/)
+[ilogs mobile software GmbH](http://ilogs.com/)
 
-Also visit my Blog: [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) ( Under construction ;) )
+Ninja Arrows Blog: [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) ( Under construction ;) )
 
 
 **Note**
