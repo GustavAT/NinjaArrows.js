@@ -129,4 +129,4 @@ ninjaArrows.register("update_finished", function (event) {
 ```
 
 ###OpenLayers
-OpenLayers version comming soon ;)
+The OpenLayers version is not stable yet but will be uploaded asap ;)
