@@ -1,6 +1,11 @@
 Google Maps
   - v1.0
     basic implementation using Google Maps JavaScript API v3 and HTML5 canvas
-    options: style, edge-ffset, border-ffset and jumpTo-Flag
-
+    options: style, edge-offset, border-offset and jumpTo-flag
+  - v1.1
+    major bug-fix in setBorderOffset function (the offset was not calculated and applied correctly)
 OpenLayers
+  - v1.0
+    first stable OpenLayers version.
+    Includes: basic implementation using OpenLayers 2 and HTML5 canvas
+    options: style, edge-offset, border-offset, jumpTo-flag and projection
