@@ -1,5 +1,5 @@
 #NinjaArrows.js
-NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the map's eged showing positions and the number of out-of-bounds markers. By clicking on an arrow the map will extend its bounds to show out-of-bounds markers in a special direction or change its viewport to display only these markers. NinjaArrows.js also allows you to apply a custom style for your arrows including fill color, stroke color and text color. Offsets (edge offset and border offset) are also fully customizable.
+NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the map's eged showing positions and the number of out-of-bounds markers. By clicking on an arrow the map will extend its bounds to show out-of-bounds markers in a special direction or change its viewport to display only these markers. NinjaArrows.js also allows you to apply a custom style for your arrows including fill color, stroke color and text color. Offsets, edge offset and border offset, are also fully customizable (see more at Explanation Offsets).
 
 - [Google Maps](#google-maps)
 - [OpenLayers](#openlayers)
