@@ -1,10 +1,11 @@
 NinjaArrows.js
 ==============
 
-NinjaArrows is a Google Maps/OpenLayers extension that shows small arrows at the map's egeds indicating out of bounds markers. You can jump to these markers or extend your map's bounds by clicking on an arrow.
+NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the map's eged showing positions and the number of out-of-bounds markers. By clicking on an arrow the map will extend its bounds to show out-of-bounds markers in a special direction or change its viewport to display only these markers. NinjaArrows.js also allows you to apply a custom style for your arrows including fill color, stroke color and text color. Offsets (edge offset and border offset) are also fully customizeable.
 
 - [Google Maps](#google-maps)
 - [OpenLayers](#openlayers)
+- [Explanation Offsets](#explanation-offsets)
 
 This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Please also visit my blog [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) to receive the lastest news.
 
@@ -232,3 +233,14 @@ ninjaArrows.register("update_finished", function (event) {
   // do something
 };
 ```
+
+### Explanation Offsets
+
+NinjaArrows.js includes two types of offsets: *edge offset* and *border offset*. You can specifiy these offsets through the options parameter when creating a new instance or by calling setEdgeOffset or setBorderOffset.
+
+![Explanation Offsets](https://ninjadevs.files.wordpress.com/2014/10/offsets.png)
+
+Blue lines represent the **edge offset**. The edge offset specifies the minimum distance between arrows in corners and arrows in north, east, south and west. In other words: arrows won't overlap in the corners.
+
+Red lines represent the **border offset**. The border offset specifies the distance between the arrows and the map's border. This offset can be used to position arrows so that they don't overlap map controls.
+
