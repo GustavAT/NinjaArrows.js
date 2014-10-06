@@ -3,13 +3,8 @@ NinjaArrows.js
 
 NinjaArrows is a Google Maps/OpenLayers extension that shows small arrows at the map's egeds indicating out of bounds markers. You can jump to these markers or extend your map's bounds by clicking on an arrow.
 
-**Google Maps**
-
-![NinjaArrows in Google Maps](https://ninjadevs.files.wordpress.com/2014/09/gmaps.png)
-
-**OpenLayers**
-
-![NinjaArrows in OpenLayers](https://ninjadevs.files.wordpress.com/2014/10/ninjaarrows-openlayers-v1-0.png)
+- [Google Maps](#google-maps)
+- [OpenLayers](#openlayers)
 
 **Please also visit**
 
@@ -28,6 +23,8 @@ Usage
 -----
 
 ###Google Maps
+![NinjaArrows in Google Maps](https://ninjadevs.files.wordpress.com/2014/09/gmaps.png)
+
 **Creating a new instance**
 
 To use NinjaArrows and its features simply create a new __NinjaArrows__ instance by passing a map to the constructor.
@@ -135,6 +132,8 @@ ninjaArrows.register("update_finished", function (event) {
 ```
 
 ###OpenLayers
+![NinjaArrows in OpenLayers](https://ninjadevs.files.wordpress.com/2014/10/ninjaarrows-openlayers-v1-0.png)
+
 **Creating a new instance**
 
 To use NinjaArrows and all its features in OpenLayers 2 simply create a new __NinjaArrows__ instance. If a layer was specified, the arrows will be rendered on that layer. **Note:** The layer must be attached to a map!
