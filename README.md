@@ -118,7 +118,7 @@ ninjaArrows.register("update_finished", function (event) {
 };
 ```
 
-[▴ back to top](#ninjaarrows.js)
+[▴ back to top](#ninjaarrowsjs)
 
 ###OpenLayers
 ![NinjaArrows in OpenLayers](https://ninjadevs.files.wordpress.com/2014/10/ninjaarrows-openlayers-v1-0.png)
@@ -234,7 +234,7 @@ ninjaArrows.register("update_finished", function (event) {
 };
 ```
 
-[▴ back to top](#ninjaarrows.js)
+[▴ back to top](#ninjaarrowsjs)
 
 ### Explanation Offsets
 
@@ -246,4 +246,4 @@ Blue lines represent the **edge offset**. The edge offset specifies the minimum 
 
 Red lines represent the **border offset**. The border offset specifies the distance between the arrows and the map's border. This offset can be used to position arrows so that they don't overlap map controls.
 
-[▴ back to top](#ninjaarrows.js)
+[▴ back to top](#ninjaarrowsjs)
