@@ -12,6 +12,8 @@ This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Ple
 ###Google Maps
 ![NinjaArrows in Google Maps](https://ninjadevs.files.wordpress.com/2014/09/gmaps.png)
 
+[>> JSFiddle](http://jsfiddle.net/pL3x6u1c/)
+
 **Creating a new instance**
 
 To use NinjaArrows and its features simply create a new __NinjaArrows__ instance by passing a map to the constructor.
@@ -122,6 +124,8 @@ ninjaArrows.register("update_finished", function (event) {
 
 ###OpenLayers
 ![NinjaArrows in OpenLayers](https://ninjadevs.files.wordpress.com/2014/10/ninjaarrows-openlayers-v1-0.png)
+
+[>> JSFiddle](http://jsfiddle.net/uf6gjfhh/)
 
 **Creating a new instance**
 
