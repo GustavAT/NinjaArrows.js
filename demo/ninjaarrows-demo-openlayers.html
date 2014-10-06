@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NinjaArrows OpenLayers Demo Example</title>
+	<script src="http://openlayers.org/api/OpenLayers.js"></script>
+	<script src="./ninjaarrows-openlayers.js" ></script>
+	<script type="text/javascript">
+		var map, osm, featureLayer, ninjaArrows, points = [], point;
+		function init() {
+			map = new OpenLayers.Map("map");
+			osm = new OpenLayers.Layer.OSM();
+			featureLayer = new OpenLayers.Layer.Vector("Point Layer");
+			map.addLayers([osm, featureLayer]);
+			map.setCenter(new OpenLayers.LonLat(14.289268,46.642138).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913")), 10);
+
+			for (var i = 0; i < 100; i++) {
+				point = new OpenLayers.Geometry.Point(13 + 2 * Math.random(), 46 + 2 * Math.random());
+				points.push(point);
+				featureLayer.addFeatures([new OpenLayers.Feature.Vector(point)]);
+			}
+			ninjaArows = new NinjaArrows(points, featureLayer, { projection: "wgs1984" });
+		}
+	</script>
+</head>
+
+<body onload="init();">
+	<div id="map" style="height: 400px; width: 600px;"></div>
+</body>
+
+</html>
