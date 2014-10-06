@@ -211,6 +211,7 @@ NinjaArrows = (function () {
         switch (options.projection) {
             case "wgs1984":
                 this.projection = wgs1984;
+                this.convertPoints(wgs1984, sphericalMercator);
                 break;
             case "sm":
                 this.projection = sphericalMercator;
@@ -242,6 +243,13 @@ NinjaArrows = (function () {
         strokeColor: "black",
         strokeWidth: 2,
         textColor: "black"
+    };
+
+    ninjaArrows.prototype.convertPoints = function(source, dest) {
+        var point, i;
+        for (i = 0; i < this.points.length; i++) {
+            this.points[i].transform(source, dest);
+        }
     };
 
     ninjaArrows.prototype.init = function() {
