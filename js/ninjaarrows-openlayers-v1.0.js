@@ -224,6 +224,7 @@ NinjaArrows = (function () {
         this.clickArrow = this.clickArrowHandler.bind(this);
         this.move = this.moveHandler.bind(this);
 
+
         this.init();
         this.setHandler();
         this.repaint();
@@ -351,9 +352,6 @@ NinjaArrows = (function () {
         if (!this.layer || !this.layer.map) return;
 
         bounds = this.layer.map.getExtent();
-        
-        if (!bounds) return;
-        
         top = bounds.top;
         right = bounds.right;
         bottom = bounds.bottom;
@@ -633,13 +631,28 @@ NinjaArrows = (function () {
 
     ninjaArrows.prototype.register = function (event, callback) {
         if (eventTypes.indexOf(event) > -1) {
-            this.handlers[event] = callback;
+            if (!this.handlers[event]) {
+                this.handlers[event] = [];
+            }
+            this.handlers[event].push(callback);
         }
     };
 
+    ninjaArrows.prototype.unregister = function(event, callback) {
+        if (eventTypes.indexOf(event) > -1 && this.handlers[event]) {
+            for (var i = this.handlers[event].length - 1; i >= 0; i--) {
+                if (this.handlers[event][i] === callback) {
+                    this.handlers[event].splice(i, 1);
+                }
+            }
+        }
+    }
+
     ninjaArrows.prototype.fire = function (event, data) {
         if (this.handlers[event]) {
-            this.handlers[event](data);
+            for (var i = 0; i < this.handlers[event].length; i++) {
+                this.handlers[event][i](data);
+            }
         }
     };
 
