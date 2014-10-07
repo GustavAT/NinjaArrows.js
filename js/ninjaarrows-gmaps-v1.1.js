@@ -381,6 +381,9 @@ NinjaArrows = (function () {
         var direction, marker, arrow, arrowsToShow = [];
 
         bounds = this.map.getBounds();
+
+        if (!bounds) return;
+
         top = bounds.getNorthEast().lat();
         right = bounds.getNorthEast().lng();
         bottom = bounds.getSouthWest().lat();
@@ -565,13 +568,28 @@ NinjaArrows = (function () {
 
     ninjaArrows.prototype.register = function (event, callback) {
         if (eventTypes.indexOf(event) > -1) {
-            this.handlers[event] = callback;
+            if (!this.handlers[event]) {
+                this.handlers[event] = [];
+            }
+            this.handlers[event].push(callback);
         }
     };
 
+    ninjaArrows.prototype.unregister = function(event, callback) {
+        if (eventTypes.indexOf(event) > -1 && this.handlers[event]) {
+            for (var i = this.handlers[event].length - 1; i >= 0; i--) {
+                if (this.handlers[event][i] === callback) {
+                    this.handlers[event].splice(i, 1);
+                }
+            }
+        }
+    }
+
     ninjaArrows.prototype.fire = function (event, data) {
         if (this.handlers[event]) {
-            this.handlers[event](data);
+            for (var i = 0; i < this.handlers[event].length; i++) {
+                this.handlers[event][i](data);
+            }
         }
     };
 
