@@ -351,6 +351,9 @@ NinjaArrows = (function () {
         if (!this.layer || !this.layer.map) return;
 
         bounds = this.layer.map.getExtent();
+        
+        if (!bounds) return;
+        
         top = bounds.top;
         right = bounds.right;
         bottom = bounds.bottom;
