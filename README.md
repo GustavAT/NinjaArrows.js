@@ -3,8 +3,8 @@ NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the ma
 
 - [Google Maps](#google-maps)
 - [OpenLayers](#openlayers)
-- [Dynamic Colors](#dynamic-colors) **(Google Maps v1.2+ , OpenLayers v1.1+)**
 - [Explanation Offsets](#explanation-offsets)
+- [Dynamic Colors](#dynamic-colors) **(Google Maps v1.2+ , OpenLayers v1.1+)**
 
 This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Please also visit my blog [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) to receive the lastest news.
 
