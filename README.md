@@ -3,7 +3,7 @@ NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the ma
 
 - [Google Maps](#google-maps)
 - [OpenLayers](#openlayers)
-- [Dynamic Colors](#dynamic-colors) **(available soon)**
+- [Dynamic Colors](#dynamic-colors) **(Google Maps v1.2+ , OpenLayers available soon)**
 - [Explanation Offsets](#explanation-offsets)
 
 This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Please also visit my blog [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) to receive the lastest news.
@@ -74,6 +74,54 @@ Pass a style object to the NinjaArrows constructor or use setStyle(style) to app
   textColor: string
 }
 ```
+
+**Dynamic Colors (v1.2+)**
+
+```javascript
+{
+  fillColor: string,
+  strokeColor: string,
+  strokeWidth: number,
+  textColor: string,
+  type: string,
+  colorStops: [],
+  resolution: number,
+  maximum: number
+}
+```
+
+The new style object includes **type**, **colorStops**, **resolution** and **maximum**. 
+
+*type*
+
+If type property is set to **gradient** a gradient will be generated based on the colorStops array and the resolution. Default is **default**.
+
+*colorStops*
+
+The colorStops array specifies the colors used for the spectrum to be generated. A color must be a hexadecimal string.
+
+*resolution*
+
+resolution specifies the gradient's resolution.
+
+*maximum*
+
+maximum specifies the maximum an arrow's count muast have to get the last color in the spectrum.
+
+Example:
+```javascript
+var style = {
+  type: "gradient",
+  colorStops: ["#00CC00", "#FFFF00", "#FF0000"],
+  resolution: 100,
+  maximum 50
+};
+```
+When applying the style above a gradient will be generated containing 100 colors ranging from green to yellow and red. A marker with count 1 will be green, all markers with count above 50 (the maximum) will be red and the markers between will get the matching color from the gradient.
+
+![Dynamic Colors](https://ninjadevs.files.wordpress.com/2014/09/dynamiccolors.png)
+
+![>> JSFiddle](http://jsfiddle.net/p57pyn3n/)
 
 _edgeOffset_
 
@@ -255,7 +303,7 @@ Red lines represent the **border offset**. The border offset specifies the dista
 
 ### Dynamic Colors
 
-**available soon**
+**Google Maps v1.2+, Openlayers available soon**
 
 The Dynamic Colors update allows you to change the arrow's color according to its count. Everything is customizable so you can also define your own color spectrum or use the default one.
 
