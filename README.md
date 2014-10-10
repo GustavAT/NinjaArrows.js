@@ -3,6 +3,7 @@ NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the ma
 
 - [Google Maps](#google-maps)
 - [OpenLayers](#openlayers)
+- [Dynamic Colors](#dynamic-colors) **(available soon)**
 - [Explanation Offsets](#explanation-offsets)
 
 This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Please also visit my blog [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) to receive the lastest news.
@@ -249,5 +250,15 @@ NinjaArrows.js includes two types of offsets: *edge offset* and *border offset*.
 Blue lines represent the **edge offset**. The edge offset specifies the minimum distance between arrows in corners and arrows in north, east, south and west. In other words: arrows won't overlap in the corners.
 
 Red lines represent the **border offset**. The border offset specifies the distance between the arrows and the map's border. This offset can be used to position arrows so that they don't overlap map controls.
+
+[▴ back to top](#ninjaarrowsjs)
+
+### Dynamic Colors
+
+**available soon**
+
+The Dynamic Colors update allows you to change the arrow's color according to its count. Everything is customizable so you can also define your own color spectrum or use the default one.
+
+![Dynamic Colors](https://ninjadevs.files.wordpress.com/2014/09/dynamiccolors.png)
 
 [▴ back to top](#ninjaarrowsjs)
