@@ -355,6 +355,6 @@ Red lines represent the **border offset**. The border offset specifies the dista
 
 The Dynamic Colors update allows you to change the arrow's color according to its count. Everything is customizable so you can also define your own color spectrum or use the default one.
 
-![Dynamic Colors](https://ninjadevs.files.wordpress.com/2014/09/dynamiccolors.png)
+![Dynamic Colors](https://ninjadevs.files.wordpress.com/2014/09/dynamiccolors.png) ![More Colors](https://ninjadevs.files.wordpress.com/2014/09/customstylenew.png)
 
 [▴ back to top](#ninjaarrowsjs)
