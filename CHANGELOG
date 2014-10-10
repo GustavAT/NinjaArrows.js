@@ -4,8 +4,12 @@ Google Maps
     options: style, edge-offset, border-offset and jumpTo-flag
   - v1.1
     major bug-fix in setBorderOffset function (the offset was not calculated and applied correctly)
+  - v1.2
+    added Dynamic Colors feature that changes arrow color according to its count
 OpenLayers
   - v1.0
     first stable OpenLayers version.
-    Includes: basic implementation using OpenLayers 2 and HTML5 canvas
+    includes: basic implementation using OpenLayers 2 and HTML5 canvas
     options: style, edge-offset, border-offset, jumpTo-flag and projection
+  - v1.1
+    added Dynamic Colors feature that changes arrow color according to its count
