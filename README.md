@@ -121,7 +121,7 @@ When applying the style above a gradient will be generated containing 100 colors
 
 ![Dynamic Colors](https://ninjadevs.files.wordpress.com/2014/09/dynamiccolors.png)
 
-![>> JSFiddle](http://jsfiddle.net/p57pyn3n/)
+[>> JSFiddle](http://jsfiddle.net/p57pyn3n/)
 
 _edgeOffset_
 
