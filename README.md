@@ -1,9 +1,9 @@
 #NinjaArrows.js
-NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the map's eged showing positions and the number of out-of-bounds markers. By clicking on an arrow the map will extend its bounds to show out-of-bounds markers in a special direction or change its viewport to display only these markers. NinjaArrows.js also allows you to apply a custom style for your arrows including fill color, stroke color and text color. Offsets, edge offset and border offset, are also fully customizable (see more at Explanation Offsets).
+NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the map's eged showing positions and the number of out-of-bounds markers. By clicking on an arrow the map will extend its bounds to show out-of-bounds markers in a special direction or change its viewport to display only these markers. NinjaArrows.js also allows you to apply a custom style for your arrows including fill color, stroke color and text color and offsets
 
 - [Google Maps](#google-maps)
 - [OpenLayers](#openlayers)
-- [Explanation Offsets](#explanation-offsets)
+- [Offsets](#offsets)
 - [Dynamic Colors](#dynamic-colors) *(Google Maps v1.2+ , OpenLayers v1.1+)*
 
 This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Please also visit my blog [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) to receive the lastest news.
@@ -341,7 +341,7 @@ ninjaArrows.register("update_finished", function (event) {
 
 NinjaArrows.js includes two types of offsets: *edge offset* and *border offset*. You can specifiy these offsets through the options parameter when creating a new instance or by calling setEdgeOffset() or setBorderOffset().
 
-![Explanation Offsets](https://ninjadevs.files.wordpress.com/2014/10/offsets.png)
+![Offsets](https://ninjadevs.files.wordpress.com/2014/10/offsets.png)
 
 Blue lines represent the **edge offset**. The edge offset specifies the minimum distance between arrows in corners and arrows in north, east, south and west. In other words: arrows won't overlap in the corners.
 
