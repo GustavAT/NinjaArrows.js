@@ -337,7 +337,7 @@ ninjaArrows.register("update_finished", function (event) {
 
 [▴ back to top](#ninjaarrowsjs)
 
-### Explanation Offsets
+### Offsets
 
 NinjaArrows.js includes two types of offsets: *edge offset* and *border offset*. You can specifiy these offsets through the options parameter when creating a new instance or by calling setEdgeOffset() or setBorderOffset().
 
