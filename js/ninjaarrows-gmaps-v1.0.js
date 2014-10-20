@@ -380,6 +380,7 @@ NinjaArrows = (function () {
         var direction, marker, arrow, arrowsToShow = [];
 
         bounds = this.map.getBounds();
+        if (!bounds) return;
         top = bounds.getNorthEast().lat();
         right = bounds.getNorthEast().lng();
         bottom = bounds.getSouthWest().lat();
