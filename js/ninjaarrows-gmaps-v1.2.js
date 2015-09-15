@@ -23,14 +23,15 @@
 */
 
 NinjaArrow = (function () {
-    var ninjaArrow = function (map, position, count, direction, offset, style, jumpTo) {
-        this.map = map;
+    var ninjaArrow = function (ref, position, count, direction, offset) {
+        this.ref = ref;
+        this.map = ref.map;
         this.position = position || new google.maps.LatLng(46.62794, 14.30899);
         this.count = count || "0";
         this.direction = direction || 8;
         this.offset = offset || { x: 0, y: 0 };
-        this.style = style || {};
-        this.jumpTo = jumpTo;
+        this.style = ref.style || {};
+        this.jumpTo = ref.jumpTo;
         this.marker = [];
         this.div = null;
         this.setMap(this.map);
@@ -53,22 +54,32 @@ NinjaArrow = (function () {
 
         panes.floatPane.appendChild(this.div);
 
-        var that = this;
         google.maps.event.addDomListener(this.div, "click", function () {
-            var bounds = new google.maps.LatLngBounds();
-            if (!that.marker) return;
+            this.ref.fire("arrow_click", this);
+            if (!this.ref.zoomOnClick) return;
 
-            for (var i = 0; i < that.marker.length; i++) {
-                bounds.extend(that.marker[i].getPosition());
+            var bounds = new google.maps.LatLngBounds();
+            if (!this.marker) return;
+
+            for (var i = 0; i < this.marker.length; i++) {
+                bounds.extend(this.marker[i].getPosition());
             }
-            if (!that.jumpTo) {
-                bounds.union(that.map.getBounds());
+            if (!this.jumpTo) {
+                bounds.union(this.map.getBounds());
             }
-            that.map.fitBounds(bounds);
-            if (that.map.getZoom() > 16) {
-                that.map.setZoom(16);
+            this.map.fitBounds(bounds);
+            if (this.map.getZoom() > 16) {
+                this.map.setZoom(16);
             }
-        });
+        }.bind(this));
+
+        google.maps.event.addDomListener(this.div, "mouseover", function() {
+            this.ref.fire("arrow_mouseover", this);
+        }.bind(this));
+
+        google.maps.event.addDomListener(this.div, "mouseout", function() {
+            this.ref.fire("arrow_mouseout", this);
+        }.bind(this));
     };
 
     ninjaArrow.prototype.draw = function () {
@@ -109,6 +120,7 @@ NinjaArrow = (function () {
     };
 
     ninjaArrow.prototype.repaint = function () {
+        if (!this.div) return;
         var src = ninjaArrow.createNinjaArrowIcon(this.direction, this.count, this.style);
         this.div.childNodes[0].src = src;
         this.draw();
@@ -118,29 +130,24 @@ NinjaArrow = (function () {
         if (!direction || !text) return null;
 
         var canvas = document.createElement("canvas"),
-            context,
-            textWidth,
             width = 40,
             height = 40,
             fontSize = 13,
-            temp,
-            angle,
-            offsets,
             strokeColor = style.strokeColor || "black",
             strokeWidth = style.strokeWidth || 2,
             textColor = style.textColor || "black";
 
         canvas.width = width;
         canvas.height = height;
-        context = canvas.getContext("2d");
+        var context = canvas.getContext("2d");
         context.translate(width / 2, height / 2);
 
         context.fillStyle = textColor;
         context.font = "bold " + fontSize + "px Arial";
-        textWidth = context.measureText(text);
-        temp = ninjaArrow.getAngleAndOffsetFromDirection(direction, fontSize, textWidth.width);
-        angle = temp.angle;
-        offsets = temp.offsets;
+        var textWidth = context.measureText(text);
+        var temp = ninjaArrow.getAngleAndOffsetFromDirection(direction, fontSize, textWidth.width);
+        var angle = temp.angle;
+        var offsets = temp.offsets;
         context.fillText(text, offsets.x - textWidth.width / 2, offsets.y);
 
         context.beginPath();
@@ -158,27 +165,22 @@ NinjaArrow = (function () {
         return canvas.toDataURL();
     };
 
-    ninjaArrow.getColorFromStyle = function(style, text) {
+    ninjaArrow.getColorFromStyle = function (style, text) {
         if (style.type === NinjaArrows.TypeGradient) {
-            var colorStops,
-                maximum,
-                current,
-                percentCount,
+            var percentCount,
                 i,
-                colorPercentInterval,
                 startPercent = 1,
                 minDiff = 100,
                 diff,
                 foundIndex = 0;
-            
-            colorStops = style.generatedColors;
-            maximum = style.maximum;
-            current = text <= 0 ? 1 : text;
+
+            var colorStops = style.generatedColors;
+            var maximum = style.maximum;
+            var current = text <= 0 ? 1 : text;
             percentCount = Math.round(100 / maximum * current);
-            colorPercentInterval = 100 / (colorStops.length - 1);
+            var colorPercentInterval = 100 / (colorStops.length - 1);
             if (percentCount > 100) percentCount = 100;
-            
-            // find closest color
+
             for (i = 0; i < colorStops.length; i++) {
                 diff = Math.abs(startPercent - percentCount);
                 if (diff < minDiff) {
@@ -233,7 +235,7 @@ NinjaArrow = (function () {
             y += fontSize;
             x += textWidth / 2;
         }
-        return { angle: angle, offsets: { x: x, y: y} };
+        return { angle: angle, offsets: { x: x, y: y } };
     };
 
     return ninjaArrow;
@@ -241,7 +243,7 @@ NinjaArrow = (function () {
 
 NinjaArrows = (function () {
 
-    var eventTypes = ["arrows_created", "update_finished"];
+    var eventTypes = ["arrows_created", "update_finished", "arrow_click", "arrow_mouseover", "arrow_mouseout"];
 
     var ninjaArrows = function (map, marker, options) {
         if (!map) return;
@@ -256,6 +258,7 @@ NinjaArrows = (function () {
         this.edgeOffset = options.edgeOffset || 75;
         this.borderOffset = options.borderOffset || { top: 0, right: 0, bottom: 0, left: 70 };
         this.jumpTo = typeof options.jumpTo !== "boolean" ? true : options.jumpTo;
+        this.zoomOnClick = typeof options.zoomOnClick !== "boolean" ? true : options.zoomOnClick;
 
         // adding support for dynamic arrow color depending on count and maximum
         if (this.style.type === ninjaArrows.TypeGradient) {
@@ -319,7 +322,7 @@ NinjaArrows = (function () {
     };
 
     ninjaArrows.prototype.createNinjaArrow = function (direction) {
-        var arrow, x, y;
+        var x, y;
         if (direction & NinjaArrows.N) { // North
             y = 20 + this.borderOffset.top;
         }
@@ -338,7 +341,7 @@ NinjaArrows = (function () {
         else {
             x = 0 - this.borderOffset.right;
         }
-        arrow = new NinjaArrow(this.map, null, 0, direction, { x: -20 + x, y: -20 + y }, this.style, this.jumpTo);
+        var arrow = new NinjaArrow(this, null, 0, direction, { x: -20 + x, y: -20 + y });
         arrow.count = -1;
         arrow.marker = [];
         return arrow;
@@ -415,6 +418,13 @@ NinjaArrows = (function () {
             this.arrows[i].jumpTo = this.jumpTo;
         }
     };
+
+    ninjaArrows.prototype.setZoomOnClick = function(zoomOnClick) {
+        this.zoomOnClick = typeof zoomOnClick !== "boolean" ? true : zoomOnClick;
+        for (var i = 0; i < this.arrows.length; i++) {
+            this.arrows[i].zoomOnClick = this.zoomOnClick;
+        }
+    }
 
     ninjaArrows.prototype.show = function () {
         for (var i = 0; i < this.arrows.length; i++) {
@@ -658,11 +668,11 @@ NinjaArrows = (function () {
     ninjaArrows.generateGradient = function (style) {
         var resolution = style.resolution,
             colorStops = style.colorStops,
-            i, colorsLeft, newColorStops = [], count, factor, spaces;
+            i, newColorStops = [], count;
 
-        spaces = colorStops.length -1;
-        colorsLeft = resolution - colorStops.length;
-        factor = Math.floor(colorsLeft / spaces);
+        var spaces = colorStops.length - 1;
+        var colorsLeft = resolution - colorStops.length;
+        var factor = Math.floor(colorsLeft / spaces);
 
         for (i = 0; i < colorStops.length - 1; i++) {
             count = factor;
@@ -676,15 +686,14 @@ NinjaArrows = (function () {
     };
 
     ninjaArrows.generateColorsBetweenNodes = function (colorA, colorB, newColors, count) {
-        var countAtmp, countTmpB, colorBetween;
         if (count === 0) {
             newColors.push(colorA);
             return;
         }
         count--;
-        countAtmp = Math.ceil(count / 2);
-        countTmpB = count - countAtmp;
-        colorBetween = ninjaArrows.generateColorBetween(colorA, colorB);
+        var countAtmp = Math.ceil(count / 2);
+        var countTmpB = count - countAtmp;
+        var colorBetween = ninjaArrows.generateColorBetween(colorA, colorB);
         ninjaArrows.generateColorsBetweenNodes(colorA, colorBetween, newColors, countAtmp);
         ninjaArrows.generateColorsBetweenNodes(colorBetween, colorB, newColors, countTmpB);
     };
@@ -697,11 +706,10 @@ NinjaArrows = (function () {
             bA = (colorAInt & 0x0000FF) >> 0,
             rB = (colorBInt & 0xFF0000) >> 16,
             gB = (colorBInt & 0x00FF00) >> 8,
-            bB = (colorBInt & 0x0000FF) >> 0,
-            newColorInt, newColorString;
+            bB = (colorBInt & 0x0000FF) >> 0;
 
-        newColorInt = (((rA + rB) / 2) << 16) + (((gA + gB) / 2) << 8) + (((bA + bB) / 2) << 0);
-        newColorString = "#" + ("000000" + newColorInt.toString(16)).substr(-6);
+        var newColorInt = (((rA + rB) / 2) << 16) + (((gA + gB) / 2) << 8) + (((bA + bB) / 2) << 0);
+        var newColorString = "#" + ("000000" + newColorInt.toString(16)).substr(-6);
         return newColorString;
     };
 
