@@ -6,6 +6,11 @@ Google Maps
     major bug-fix in setBorderOffset function (the offset was not calculated and applied correctly)
   - v1.2
     added Dynamic Colors feature that changes arrow color according to its count
+    
+    fixes bug "div is undefined in ninjaarrow repaint function #3"
+    added 3 new events: arrow_click, arrow_mouseover and arrow_mouseout
+    added zoomOnClick porperty: set default behaviour on arrow click
+    minor code refactoring
 OpenLayers
   - v1.0
     first stable OpenLayers version.
