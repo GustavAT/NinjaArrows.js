@@ -1,4 +1,4 @@
-#NinjaArrows.js
+#NinjaArrows.js for Google Maps and OpenLayers
 NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the map's eged showing positions and the number of out-of-bounds markers. By clicking on an arrow the map will extend its bounds to show out-of-bounds markers in a special direction or change its viewport to display only these markers. NinjaArrows.js also allows you to apply a custom style for your arrows including fill color, stroke color and text color and offsets
 
 - [Google Maps](#google-maps)
@@ -143,6 +143,10 @@ _jumpTo_
 
 This flag specifies whether the map's bounds should extend to contain out-of-bounds markers or jump to out-of-bounds markers. Use setJumpTo(flag)
 
+_zoomOnClick_
+
+Flag that specifies default behaviour of an arrow icon click. Use set zoomOnClick(flag)
+
 **Show/Hide**
 
 Use the setMap() method to show or hide the arrows.
@@ -158,8 +162,11 @@ ninjaArrows.setMap(map);
 
 NinjaArrows supports two different events: arrows_created and update_finished.
 
-* __arrows_created__ is fired when a new instance is created and the arrows are initialised.
+* __arrows_created__ is fired when a new instance is created and the arrows are initialised
 * __update_finished__ is fired when the arrow update has finished
+* __arrow_click__ is fired when the arrow icon was clicked
+* __arrow_mouseover__ is fired when you mouse over the arrow icon
+* __arrow_mouseout__ is fired when you mouse out the arrow icon
 
 Use register(event, callback) to register for an event:
 
@@ -326,6 +333,9 @@ NinjaArrows supports two different events: arrows_created and update_finished.
 
 * __arrows_created__ is fired when a new instance is created and the arrows are initialised.
 * __update_finished__ is fired when the arrow update has finished
+* __arrow_click__ comming soon
+* __arrow_mouseover__ comming soon
+* __arrow_mouseout__ comming soon
 
 Use register(event, callback) to register for an event:
 
@@ -351,7 +361,7 @@ Red lines represent the **border offset**. The border offset specifies the dista
 
 ### Dynamic Colors
 
-**Google Maps v1.2+, Openlayers v1.1+**
+**Google Maps and Openlayers**
 
 The Dynamic Colors update allows you to change the arrow's color according to its count. Everything is customizable so you can also define your own color spectrum or use the default one.
 
