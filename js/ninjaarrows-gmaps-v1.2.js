@@ -119,7 +119,7 @@ NinjaArrow = (function () {
 
     ninjaArrow.prototype.repaint = function () {
         if (!this.div) return;
-        var src = ninjaArrow.createNinjaArrowIcon(this.direction, this.count, this.style);
+        var src = ninjaArrow.createNinjaArrowIcon(this.direction, this.count, this.ref.style);
         this.div.childNodes[0].src = src;
         this.draw();
     };
