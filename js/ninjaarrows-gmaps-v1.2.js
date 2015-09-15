@@ -30,8 +30,6 @@ NinjaArrow = (function () {
         this.count = count || "0";
         this.direction = direction || 8;
         this.offset = offset || { x: 0, y: 0 };
-        this.style = ref.style || {};
-        this.jumpTo = ref.jumpTo;
         this.marker = [];
         this.div = null;
         this.setMap(this.map);
@@ -48,7 +46,7 @@ NinjaArrow = (function () {
         div.style.position = "absolute";
         div.style.zIndex = "9999999";
 
-        img.src = ninjaArrow.createNinjaArrowIcon(this.direction, this.count, this.style);
+        img.src = ninjaArrow.createNinjaArrowIcon(this.direction, this.count, this.ref.style);
         div.appendChild(img);
         this.div = div;
 
@@ -64,7 +62,7 @@ NinjaArrow = (function () {
             for (var i = 0; i < this.marker.length; i++) {
                 bounds.extend(this.marker[i].getPosition());
             }
-            if (!this.jumpTo) {
+            if (!this.ref.jumpTo) {
                 bounds.union(this.map.getBounds());
             }
             this.map.fitBounds(bounds);
