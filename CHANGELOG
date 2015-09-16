@@ -25,7 +25,7 @@ OpenLayers
   - v1.1
     added Dynamic Colors feature that changes arrow color according to its count
     
-  - v1.1.1
+  - v1.1_1
     added bigger arrow-icons: 50x50 instead of 40x40 (numbers up to 999 are displayed correctly)
     added 3 new evetns: arrow_click, arrow_mouseover, arrow_mouseout
     add zoomOnClick property; set default behaviour on arrow click
