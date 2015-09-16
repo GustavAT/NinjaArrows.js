@@ -13,7 +13,7 @@ Google Maps
     added zoomOnClick porperty: set default behaviour on arrow click
     minor code refactoring
     
-  - v1.2.1
+  - v1.2_1
     added bigger arrow-icons: 50x50 instead of 40x40 (numbers up to 999 are displayed correctly)
     indicator when hovering an arrow
     
