@@ -9,6 +9,8 @@ NinjaArrows is a Google Maps/OpenLayers extension that displays arrows at the ma
 
 This project was created at [ilogs mobile software GmbH](http://ilogs.com/). Please also visit my blog [NinjaArrows](http://ninjadevs.wordpress.com/ninja-arrows/) to receive the lastest news.
 
+**JSFiddle Demos currently only working on firefox**
+
 ##Usage
 
 ###Google Maps
