@@ -334,9 +334,9 @@ NinjaArrows supports two different events: arrows_created and update_finished.
 
 * __arrows_created__ is fired when a new instance is created and the arrows are initialised.
 * __update_finished__ is fired when the arrow update has finished
-* __arrow_click__ comming soon
-* __arrow_mouseover__ comming soon
-* __arrow_mouseout__ comming soon
+* __arrow_click__ is fired when the arrow icon was clicked
+* __arrow_mouseover__ is fired when you mouse over the arrow icon
+* __arrow_mouseout__ is fired when you mouse out the arrow icon
 
 Use register(event, callback) to register for an event:
 
